@@ -7,7 +7,7 @@ const API = (function(){
             statusConfirmed = "&status=confirmed",
             statusDeaths = "&status=deaths",
             statusRecovered = "&status=recovered",
-
+            allCountriesName = [],
             
             getResponse = async function(){
                 try {
@@ -18,18 +18,20 @@ const API = (function(){
                                 casesData = await searchCasesResponse.json(),
                                 searchVaccinesResponse = await fetch(vaccinesUrl + STRING.capitalizeFirstLetter(DOM.searchBox.value)),
                                 vaccinesData = await searchVaccinesResponse.json();
-
+                                
+                                allCountriesName.push(...countriesNameArray);
                                 console.log(casesData.All)
                                 console.log(vaccinesData.All)
                                 console.log(countriesNameArray)
-
+                                STRING.autoComplete(DOM.searchBox,countriesNameArray);
                 } catch(error) {
                     console.log(error);
                 }
             };
 
     return  {
-                getResponse: getResponse
+                getResponse: getResponse,
+                allCountriesName:allCountriesName
             }
 
 })();
