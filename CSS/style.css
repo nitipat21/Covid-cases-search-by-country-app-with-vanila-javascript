@@ -114,7 +114,7 @@ footer{
     flex-wrap:nowrap;
 }
 
-.result-1{
+.result{
     background-color: white;
     border-radius: 1rem;
     max-width: 10rem;
@@ -125,15 +125,21 @@ footer{
     margin: 0.5rem;
 }
 
-.result-2{
-    background-color: white;
-    border-radius: 1rem;
-    max-width: 10rem;
-    max-height: 24rem;
-    width: 100%;
+.btn-container{
+    position: relative;
+    left: 95%;
+    top: -0.5%;
+}
+
+.removeBtn{
     font-size: 0.5rem;
-    padding: 0.5rem;
-    margin: 0.5rem;
+    background-color: #ffffff00;
+    position: absolute;
+    border-style: none;
+}
+
+.removeBtn:hover{
+    color: #ff0000;
 }
 
 .result-header{
@@ -157,6 +163,7 @@ footer{
 
 .result-text p{
     border-bottom: solid #000;
+    margin-left: 0.1rem;
     margin-top: 0.1rem;
     padding-bottom: 0.1rem;
 }

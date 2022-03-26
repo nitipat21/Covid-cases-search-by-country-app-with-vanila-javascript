@@ -5,7 +5,7 @@ const STRING = (function(){
                 return string.charAt(0).toUpperCase() + string.slice(1);
             },
 
-            autoComplete = function autocomplete(inp, arr) {
+            autoComplete = function(inp, arr) {
                 /*the autocomplete function takes two arguments,
                 the text field element and an array of possible autocompleted values:*/
                 var currentFocus;
@@ -107,11 +107,16 @@ const STRING = (function(){
               document.addEventListener("click", function (e) {
                   closeAllLists(e.target);
               });
+            },
+
+            numberWithCommas = function(number){
+              return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
     
     return  {
                 capitalizeFirstLetter:capitalizeFirstLetter,
-                autoComplete:autoComplete
+                autoComplete:autoComplete,
+                numberWithCommas:numberWithCommas
             }
 
 })();

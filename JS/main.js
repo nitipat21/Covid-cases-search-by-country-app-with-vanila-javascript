@@ -1,6 +1,10 @@
 const MAIN = (function(){
     'use strict'
 
-    DOM.submitBtn.addEventListener("click",API.getResponse);
+    API.getAllCountriesName();
+
+    STRING.autoComplete(DOM.searchBox,API.allCountriesName);
+
+    DOM.submitBtn.addEventListener("click",API.getAllSearchResponse);
     
 })();
