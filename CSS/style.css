@@ -137,11 +137,28 @@ footer{
 }
 
 .result-header{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: solid #000;
+}
+
+.result-text-container{
+    margin-top: 2.5%;
 }
 
 .result-text{
-    font-size: 1rem;
+    font-size: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.5%;
+}
+
+.result-text p{
+    border-bottom: solid #000;
+    margin-top: 0.1rem;
+    padding-bottom: 0.1rem;
 }
 
 .compare-container{
