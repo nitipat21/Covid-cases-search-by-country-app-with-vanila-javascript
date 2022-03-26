@@ -19,8 +19,8 @@ footer{
     background-color: black;
     color: white;
     width: 100%;
-    margin-top: 2rem;
     text-align: center;
+    position: absolute;
 }
 
 :root{
@@ -30,7 +30,7 @@ footer{
 /*  */
 
 .layout-container{
-    margin: 2rem auto;
+    margin: 5% auto 5% auto;
     height: 100%;
     width: 100%;
 }
@@ -174,17 +174,6 @@ footer{
     width: 100%;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    display: flex;
-    justify-content: center;
-}
-
-.compare-text{
-    background-color: white;
-    width: 100%;
-    font-size: 0.75rem; 
-    padding: 0.5rem;
-    margin: 0.5rem;
-    border-radius: 1rem;
 }
 
 .compare-header{
@@ -192,7 +181,31 @@ footer{
 }
 
 .compare-info{
-    font-size: 0.7rem;
+    font-size: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 2.5% auto;
+    padding: 2.5%;
+    width: 90%;
+    background-color: #e9e9e9;
+    border-radius: 2rem;
+}
+
+.compare-text{
+    display: flex;
+    flex-direction: row;
+    padding-left: 2.5%;
+    align-items: center;
+}
+
+.compare-country{
+    margin-left: 5%;
+    text-align: center;
+}
+
+.first-country{
+    border-bottom: solid #000;
 }
 
 @media screen and (min-width: 1300px) {

@@ -142,6 +142,7 @@ const API = (function(){
                         })     
                         
                         DOM.createCountryCard(formatDataArray);
+                        DOM.searchBox.value = "";
 
                 } catch(error) {
                     console.log(error);

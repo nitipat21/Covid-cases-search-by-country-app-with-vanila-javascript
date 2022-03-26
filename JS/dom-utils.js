@@ -57,7 +57,13 @@ const DOM = (function(){
                 const thisResult = event.parentElement.parentElement;
 
                 resultContainer.removeChild(thisResult);
-            }
+            },
+
+            generateCompareText = function(array){
+                if (resultContainer.childElementCount === 2) {
+                    
+                }
+            } 
 
     return  {
                 searchBox:searchBox,
