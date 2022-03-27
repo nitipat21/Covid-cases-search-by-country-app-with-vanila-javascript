@@ -61,7 +61,25 @@ const DOM = (function(){
 
             generateCompareText = function(array){
                 if (resultContainer.childElementCount === 2) {
-                    
+                    const compareCard = `<div class="compare-text"><h3>Vaccinated %:</h3>
+                    <div class="compare-country">
+                        <p class="first-country">first</p><p class="second-country">second</p>
+                    </div>
+                </div>
+                <div class="compare-text">
+                    <h3>Deaths %:</h3>
+                    <div class="compare-country">
+                        <p class="first-country">first country name<span>number</span></p>
+                        <p class="second-country">second country name<span>number</span></p>
+                    </div>
+                </div>
+                <div class="compare-text">
+                    <h3>Today(Cases/Recovered):</h3>
+                    <div class="compare-country">
+                        <p class="first-country">first country name<span>number</span></p>
+                        <p class="second-country">second country name<span>number</span></p>
+                    </div>
+                </div>`
                 }
             } 
 
