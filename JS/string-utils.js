@@ -115,13 +115,15 @@ const STRING = (function(){
 
             formatArraytoNumberWithCommas = function(array){
 
-              array.map(function(value){
+              const formatArray = array.map(function(value){
                   if (typeof value == "number") {
                       return STRING.numberWithCommas(value)
                   } else {
                       return value;
                   }
-              })   
+              })
+
+              return formatArray;
             },
 
             calculatePercentage = function(firstNumber,secondNumber){
@@ -129,13 +131,17 @@ const STRING = (function(){
             },
 
             compareBetweenArrays = function(firstArray,secondArray){
-              const calculatedArray = [];
+              const   calculatedArray =   firstArray.map(function(value,index){
+                                            if (typeof value == "number") {
+                                              return value - secondArray[index];
+                                            } else {
+                                              return "-"
+                                            }
+                                        }),
 
-              firstArray.map(function(value,index){
-                calculatedArray.push(value - secondArray[index]);
-              })
+                      filterArray = calculatedArray.filter(Number);
 
-              return calculatedArray;
+              return filterArray;
             }
     
     return  {

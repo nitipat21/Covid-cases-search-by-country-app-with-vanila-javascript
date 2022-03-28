@@ -71,18 +71,18 @@ const DOM = (function(){
                                             </tr>
                                             <tr class="first-country">
                                                 <th id="first-country-name">${countriesArray[0]}</th>
-                                                <th>${countriesArray[1]}%</th>
-                                                <th>${countriesArray[2]}%</th>
-                                                <th>${countriesArray[3]}</th>
+                                                <th>${countriesArray[1].toFixed(2)}%</th>
+                                                <th>${countriesArray[2].toFixed(2)}%</th>
+                                                <th id="first-country-dailyRatio">${countriesArray[3]}</th>
                                             </tr>
                                             <tr class="second-country">
                                                 <th id="second-country-name">${countriesArray[4]}</th>
-                                                <th>${countriesArray[5]}%</th>
-                                                <th>${countriesArray[6]}%</th>
-                                                <th>${countriesArray[7]}</th>
+                                                <th>${countriesArray[5].toFixed(2)}%</th>
+                                                <th>${countriesArray[6].toFixed(2)}%</th>
+                                                <th id="second-country-dailyRatio">${countriesArray[7]}</th>
                                             </tr>
                                             <tr class="compare-result">
-                                                <th>result</th>
+                                                <th>Result</th>
                                                 <th><span id="compare-text-1"></span><span id="compare-result-1">${compareResultArray[0]}</span></th>
                                                 <th><span id="compare-text-2"></span><span id="compare-result-2">${compareResultArray[1]}</span></th>
                                                 <th><span id="compare-text-3"></span><span id="compare-result-3">${compareResultArray[2]}</span></th>
@@ -94,43 +94,56 @@ const DOM = (function(){
             },
 
             showTextCompareResult = function(){
-                const   compareResult1 = document.querySelector("#compare-result1"),
-                        compareResult2 = document.querySelector("#compare-result2"),
-                        compareResult3 = document.querySelector("#compare-result3"),
-                        compareText1 = document.querySelector("#compare-text1"),
-                        compareText2 = document.querySelector("#compare-text2"),
-                        compareText3 = document.querySelector("#compare-text3"),
+                const   compareResult1 = document.querySelector("#compare-result-1"),
+                        compareResult2 = document.querySelector("#compare-result-2"),
+                        compareResult3 = document.querySelector("#compare-result-3"),
+                        compareText1 = document.querySelector("#compare-text-1"),
+                        compareText2 = document.querySelector("#compare-text-2"),
+                        compareText3 = document.querySelector("#compare-text-3"),
                         firstCountryName = document.querySelector("#first-country-name"),
-                        secondCountryName = document.querySelector("#second-country-name");
+                        secondCountryName = document.querySelector("#second-country-name"),
+                        firstCountryDailyRatio = document.querySelector("#first-country-dailyRatio"),
+                        secondCountryDailyRatio = document.querySelector("#second-country-dailyRatio");
 
                 // 1st
 
                 if (compareResult1.textContent > 0) {
-                    compareText1.textContent = `${firstCountryName} >`
-                    compareResult1.textContent = `${Math.abs(compareResult1.textContent)}%`
+                    compareText1.textContent = `${firstCountryName.textContent} >`
+                    compareResult1.textContent = `${Math.abs(compareResult1.textContent).toFixed(2)}%`
                 } else if (compareResult1.textContent < 0) {
-                    compareText1.textContent = `${secondCountryName} >`
-                    compareResult1.textContent = `${Math.abs(compareResult1.textContent)}%`
+                    compareText1.textContent = `${secondCountryName.textContent} >`
+                    compareResult1.textContent = `${Math.abs(compareResult1.textContent).toFixed(2)}%`
                 }
 
                 // 2nd
 
                 if (compareResult2.textContent > 0) {
-                    compareText2.textContent = `${firstCountryName} >`
-                    compareResult2.textContent = `${Math.abs(compareResult2.textContent)}%`
+                    compareText2.textContent = `${firstCountryName.textContent} >`
+                    compareResult2.textContent = `${Math.abs(compareResult2.textContent).toFixed(2)}%`
                 } else if (compareResult2.textContent < 0) {
-                    compareText2.textContent = `${secondCountryName} >`
-                    compareResult2.textContent = `${Math.abs(compareResult2.textContent)}%`
+                    compareText2.textContent = `${secondCountryName.textContent} >`
+                    compareResult2.textContent = `${Math.abs(compareResult2.textContent).toFixed(2)}%`
                 }
 
                 // 3nd
 
                 if (compareResult3.textContent > 0) {
-                    compareText3.textContent = `${firstCountryName} >`
-                    compareResult3.textContent = `${Math.abs(compareResult3.textContent)}%`
+                    compareText3.textContent = `${firstCountryName.textContent} >`
+                    compareResult3.textContent = `${Math.abs(compareResult3.textContent).toFixed(2)}%`
                 } else if (compareResult3.textContent < 0) {
-                    compareText3.textContent = `${secondCountryName} >`
-                    compareResult3.textContent = `${Math.abs(compareResult3.textContent)}%`
+                    compareText3.textContent = `${secondCountryName.textContent} >`
+                    compareResult3.textContent = `${Math.abs(compareResult3.textContent).toFixed(2)}%`
+                } else if (isNaN(compareResult3.textContent)) {
+                    compareText3.textContent = ""
+                    compareResult3.textContent = "-"
+                }
+
+                if (isNaN(firstCountryDailyRatio.textContent) || firstCountryDailyRatio.textContent === "Infinity") {
+                    firstCountryDailyRatio.textContent = "-"
+                }
+
+                if (isNaN(secondCountryDailyRatio.textContent) || secondCountryDailyRatio.textContent === "Infinity") {
+                    secondCountryDailyRatio.textContent = "-"
                 }
             }
 

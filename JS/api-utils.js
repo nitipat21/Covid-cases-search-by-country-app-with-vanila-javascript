@@ -8,6 +8,10 @@ const API = (function(){
             statusDeaths = "&status=deaths",
             statusRecovered = "&status=recovered",
             allCountriesName = [],
+            firstCountryArray = [],
+            secondCountryArray = [],
+            bothCountriesArray = [],
+            compareResultArray = [],
             
             getAllCountriesName = async function(){
                 try {
@@ -26,12 +30,22 @@ const API = (function(){
                         const   searchCasesResponse = await fetch(casesUrl + STRING.capitalizeFirstLetter(DOM.searchBox.value)),
                                 casesData = await searchCasesResponse.json(),
                                 countryName = casesData.All.country,
-                                updatedDate = casesData.All.updated;
+                                updatedDate = casesData.All.updated,
+                                undifinedDate = "unknown";
 
-                        return {
-                            countryName:countryName,
-                            updatedDate:updatedDate
+                        if (updatedDate) {
+                            return {
+                                countryName:countryName,
+                                updatedDate:updatedDate
+                            }
+                        } else {
+                            return {
+                                countryName:countryName,
+                                updatedDate:undifinedDate
+                            }
                         }
+
+                        
 
                 } catch(error) {
                     console.log(error);
@@ -131,27 +145,24 @@ const API = (function(){
                                 vaccinatedPercent = STRING.calculatePercentage(peopleVaccinated,countryPopulation),
                                 deathsPercent = STRING.calculatePercentage(totalDeathsToday,totalConfirmToday),
                                 dailyRatio = todayConfirm/todayRecovered,
-                                dataArray = [],
-                                firstCountryArray = [],
-                                secondCountryArray = [],
-                                bothCountriesArray = [],
-                                compareResultArray = [];
+                                dataArray = [];
 
                         // create country card
                         dataArray.push(countryName,countryPopulation,peopleVaccinated,totalConfirmToday,todayConfirm,totalDeathsToday,todayDeaths,totalRecoveredToday,todayRecovered,updatedDate);
-                        
-                        DOM.createCountryCard(formatArraytoNumberWithCommas(dataArray));
+
+                        DOM.createCountryCard((STRING.formatArraytoNumberWithCommas(dataArray)));
 
                         // create compare card
-                        if (DOM.resultContainer.childElementCount < 1) {
+                        if (DOM.resultContainer.childElementCount == 1) {
 
-                            firstCountryArray.push(vaccinatedPercent,deathsPercent,dailyRatio);
+                            firstCountryArray.push(countryName,vaccinatedPercent,deathsPercent,dailyRatio);
 
                         } else if (DOM.resultContainer.childElementCount > 1) {
 
-                            secondCountryArray.push(vaccinatedPercent,deathsPercent,dailyRatio);
+                            secondCountryArray.push(countryName,vaccinatedPercent,deathsPercent,dailyRatio);
                             bothCountriesArray.push(...firstCountryArray,...secondCountryArray);
                             compareResultArray.push(...STRING.compareBetweenArrays(firstCountryArray,secondCountryArray));
+
                             DOM.generateCompareText(bothCountriesArray,compareResultArray);
                             DOM.showTextCompareResult();
                             
