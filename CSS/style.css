@@ -178,35 +178,29 @@ footer{
 
 .compare-header{
     text-align: center;
+    font-size: 0.65rem;
 }
 
 .compare-info{
-    font-size: 0.65rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    max-height: 5.5rem;
+    height: 100%;
+    width: 90%;
     margin: 2.5% auto;
     padding: 2.5%;
-    width: 90%;
     background-color: #e9e9e9;
-    border-radius: 2rem;
+    border-radius: 1rem;
 }
 
-.compare-text{
-    display: flex;
-    flex-direction: row;
-    padding-left: 2.5%;
-    align-items: center;
+.compare-table{
+    width: 100%;
+    height: 100%;
+    font-size: 0.525rem;
+    margin: 0 auto;
 }
 
-.compare-country{
-    margin-left: 5%;
-    text-align: center;
-}
-
-.first-country{
-    border-bottom: solid #000;
-}
+/* tbody tr:first-child th:first-child, tbody tr:last-child th:first-child {
+    background-color: blue;
+} */
 
 @media screen and (min-width: 1300px) {
     footer {

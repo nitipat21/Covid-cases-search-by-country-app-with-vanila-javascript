@@ -4,6 +4,7 @@ const DOM = (function(){
     const   searchBox = document.querySelector(".searchBox"),
             submitBtn = document.querySelector(".submitBtn"),
             resultContainer = document.querySelector(".result-container"),
+            compareInfo = document.querySelector(".compare-info"),
 
             createCountryCard = function(array){
                 if (resultContainer.childElementCount < 2) {
@@ -59,35 +60,88 @@ const DOM = (function(){
                 resultContainer.removeChild(thisResult);
             },
 
-            generateCompareText = function(array){
-                if (resultContainer.childElementCount === 2) {
-                    const compareCard = `<div class="compare-text"><h3>Vaccinated %:</h3>
-                    <div class="compare-country">
-                        <p class="first-country">first</p><p class="second-country">second</p>
-                    </div>
-                </div>
-                <div class="compare-text">
-                    <h3>Deaths %:</h3>
-                    <div class="compare-country">
-                        <p class="first-country">first country name<span>number</span></p>
-                        <p class="second-country">second country name<span>number</span></p>
-                    </div>
-                </div>
-                <div class="compare-text">
-                    <h3>Today(Cases/Recovered):</h3>
-                    <div class="compare-country">
-                        <p class="first-country">first country name<span>number</span></p>
-                        <p class="second-country">second country name<span>number</span></p>
-                    </div>
-                </div>`
+            generateCompareText = function(countriesArray,compareResultArray){
+                if (compareInfo.childElementCount < 1) {
+                    const compareCard = `<table class="compare-table">
+                                            <tr class="row-header">
+                                                <th>Country Name</th>
+                                                <th>Vaccinated %</th>
+                                                <th>Deaths %</th>
+                                                <th>Today(Cases/Recovered)</th>
+                                            </tr>
+                                            <tr class="first-country">
+                                                <th id="first-country-name">${countriesArray[0]}</th>
+                                                <th>${countriesArray[1]}%</th>
+                                                <th>${countriesArray[2]}%</th>
+                                                <th>${countriesArray[3]}</th>
+                                            </tr>
+                                            <tr class="second-country">
+                                                <th id="second-country-name">${countriesArray[4]}</th>
+                                                <th>${countriesArray[5]}%</th>
+                                                <th>${countriesArray[6]}%</th>
+                                                <th>${countriesArray[7]}</th>
+                                            </tr>
+                                            <tr class="compare-result">
+                                                <th>result</th>
+                                                <th><span id="compare-text-1"></span><span id="compare-result-1">${compareResultArray[0]}</span></th>
+                                                <th><span id="compare-text-2"></span><span id="compare-result-2">${compareResultArray[1]}</span></th>
+                                                <th><span id="compare-text-3"></span><span id="compare-result-3">${compareResultArray[2]}</span></th>
+                                            </tr>
+                                        </table>`
+
+                    compareInfo.innerHTML += compareCard;
                 }
-            } 
+            },
+
+            showTextCompareResult = function(){
+                const   compareResult1 = document.querySelector("#compare-result1"),
+                        compareResult2 = document.querySelector("#compare-result2"),
+                        compareResult3 = document.querySelector("#compare-result3"),
+                        compareText1 = document.querySelector("#compare-text1"),
+                        compareText2 = document.querySelector("#compare-text2"),
+                        compareText3 = document.querySelector("#compare-text3"),
+                        firstCountryName = document.querySelector("#first-country-name"),
+                        secondCountryName = document.querySelector("#second-country-name");
+
+                // 1st
+
+                if (compareResult1.textContent > 0) {
+                    compareText1.textContent = `${firstCountryName} >`
+                    compareResult1.textContent = `${Math.abs(compareResult1.textContent)}%`
+                } else if (compareResult1.textContent < 0) {
+                    compareText1.textContent = `${secondCountryName} >`
+                    compareResult1.textContent = `${Math.abs(compareResult1.textContent)}%`
+                }
+
+                // 2nd
+
+                if (compareResult2.textContent > 0) {
+                    compareText2.textContent = `${firstCountryName} >`
+                    compareResult2.textContent = `${Math.abs(compareResult2.textContent)}%`
+                } else if (compareResult2.textContent < 0) {
+                    compareText2.textContent = `${secondCountryName} >`
+                    compareResult2.textContent = `${Math.abs(compareResult2.textContent)}%`
+                }
+
+                // 3nd
+
+                if (compareResult3.textContent > 0) {
+                    compareText3.textContent = `${firstCountryName} >`
+                    compareResult3.textContent = `${Math.abs(compareResult3.textContent)}%`
+                } else if (compareResult3.textContent < 0) {
+                    compareText3.textContent = `${secondCountryName} >`
+                    compareResult3.textContent = `${Math.abs(compareResult3.textContent)}%`
+                }
+            }
 
     return  {
                 searchBox:searchBox,
                 submitBtn:submitBtn,
+                resultContainer:resultContainer,
                 createCountryCard:createCountryCard,
-                removeCountryCard:removeCountryCard
+                removeCountryCard:removeCountryCard,
+                generateCompareText:generateCompareText,
+                showTextCompareResult:showTextCompareResult
             }
 
 })();

@@ -113,7 +113,6 @@ const API = (function(){
 
             getAllSearchResponse = async function(){
                 try {
-                        getSearchCasesResponse();
                         const   searchCasesResponse = await getSearchCasesResponse(),
                                 countryName = searchCasesResponse.countryName,
                                 updatedDate = searchCasesResponse.updatedDate,
@@ -129,19 +128,35 @@ const API = (function(){
                                 searchHistoryRecoveredResponse = await getSearchHistoryRecoveredResponse(),
                                 totalRecoveredToday = searchHistoryRecoveredResponse.totalRecoveredToday,
                                 todayRecovered = searchHistoryRecoveredResponse.todayRecovered,
-                                dataArray = [];
+                                vaccinatedPercent = STRING.calculatePercentage(peopleVaccinated,countryPopulation),
+                                deathsPercent = STRING.calculatePercentage(totalDeathsToday,totalConfirmToday),
+                                dailyRatio = todayConfirm/todayRecovered,
+                                dataArray = [],
+                                firstCountryArray = [],
+                                secondCountryArray = [],
+                                bothCountriesArray = [],
+                                compareResultArray = [];
 
+                        // create country card
                         dataArray.push(countryName,countryPopulation,peopleVaccinated,totalConfirmToday,todayConfirm,totalDeathsToday,todayDeaths,totalRecoveredToday,todayRecovered,updatedDate);
                         
-                        const   formatDataArray = dataArray.map(function(value){
-                                if (typeof value == "number") {
-                                    return STRING.numberWithCommas(value)
-                                } else {
-                                    return value;
-                                }
-                        })     
+                        DOM.createCountryCard(formatArraytoNumberWithCommas(dataArray));
+
+                        // create compare card
+                        if (DOM.resultContainer.childElementCount < 1) {
+
+                            firstCountryArray.push(vaccinatedPercent,deathsPercent,dailyRatio);
+
+                        } else if (DOM.resultContainer.childElementCount > 1) {
+
+                            secondCountryArray.push(vaccinatedPercent,deathsPercent,dailyRatio);
+                            bothCountriesArray.push(...firstCountryArray,...secondCountryArray);
+                            compareResultArray.push(...STRING.compareBetweenArrays(firstCountryArray,secondCountryArray));
+                            DOM.generateCompareText(bothCountriesArray,compareResultArray);
+                            DOM.showTextCompareResult();
+                            
+                        }
                         
-                        DOM.createCountryCard(formatDataArray);
                         DOM.searchBox.value = "";
 
                 } catch(error) {

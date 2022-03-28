@@ -111,13 +111,40 @@ const STRING = (function(){
 
             numberWithCommas = function(number){
               return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            },
+
+            formatArraytoNumberWithCommas = function(array){
+
+              array.map(function(value){
+                  if (typeof value == "number") {
+                      return STRING.numberWithCommas(value)
+                  } else {
+                      return value;
+                  }
+              })   
+            },
+
+            calculatePercentage = function(firstNumber,secondNumber){
+              return (firstNumber/secondNumber)*100;
+            },
+
+            compareBetweenArrays = function(firstArray,secondArray){
+              const calculatedArray = [];
+
+              firstArray.map(function(value,index){
+                calculatedArray.push(value - secondArray[index]);
+              })
+
+              return calculatedArray;
             }
     
     return  {
                 capitalizeFirstLetter:capitalizeFirstLetter,
                 autoComplete:autoComplete,
-                numberWithCommas:numberWithCommas
+                numberWithCommas:numberWithCommas,
+                formatArraytoNumberWithCommas:formatArraytoNumberWithCommas,
+                calculatePercentage:calculatePercentage,
+                compareBetweenArrays:compareBetweenArrays
             }
-
 })();
 
