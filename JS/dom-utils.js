@@ -5,6 +5,7 @@ const DOM = (function(){
             submitBtn = document.querySelector(".submitBtn"),
             resultContainer = document.querySelector(".result-container"),
             compareInfo = document.querySelector(".compare-info"),
+            loadingText = document.querySelector("#loading"),
 
             createCountryCard = function(array){
                 if (resultContainer.childElementCount < 2) {
@@ -55,9 +56,11 @@ const DOM = (function(){
             },
 
             removeCountryCard = function(event){
-                const thisResult = event.parentElement.parentElement;
-
-                resultContainer.removeChild(thisResult);
+                const   thisResult = event.parentElement.parentElement,
+                        thisCountryName = event.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.textContent;
+                        
+                        localStorage.removeItem(thisCountryName);
+                        resultContainer.removeChild(thisResult);
             },
 
             generateCompareText = function(countriesArray,compareResultArray){
@@ -145,6 +148,14 @@ const DOM = (function(){
                 if (isNaN(secondCountryDailyRatio.textContent) || secondCountryDailyRatio.textContent === "Infinity") {
                     secondCountryDailyRatio.textContent = "-"
                 }
+            },
+
+            showLoadingText = function(){
+                loadingText.classList.add("display");
+            },
+
+            hideLoadingText = function(){
+                loadingText.classList.remove("display");
             }
 
     return  {
@@ -154,8 +165,9 @@ const DOM = (function(){
                 createCountryCard:createCountryCard,
                 removeCountryCard:removeCountryCard,
                 generateCompareText:generateCompareText,
-                showTextCompareResult:showTextCompareResult
+                showTextCompareResult:showTextCompareResult,
+                showLoadingText:showLoadingText,
+                hideLoadingText:hideLoadingText
             }
-
 })();
 

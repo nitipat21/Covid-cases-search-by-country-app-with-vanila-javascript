@@ -105,6 +105,22 @@ footer{
     padding: 0.5rem;
 }
 
+#loading{
+    position: absolute;
+    visibility: hidden;
+    padding: 0.25rem;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+#loading h3{
+    margin-top: -0.185rem;
+}
+
+#loading.display{
+    visibility: visible;
+}
+
 .result-container{
     background-color: #ffffff10;
     height: 24rem;
@@ -143,7 +159,7 @@ footer{
 }
 
 .result-header{
-    font-size: 1.25rem;
+    font-size: 0.885rem;
     text-align: center;
     padding-top: 0.25rem;
     padding-bottom: 0.5rem;
@@ -198,13 +214,9 @@ footer{
     margin: 0 auto;
 }
 
-/* tbody tr:first-child th:first-child, tbody tr:last-child th:first-child {
-    background-color: blue;
-} */
-
 @media screen and (min-width: 1300px) {
     footer {
       position: absolute;
       bottom: 0%;
     }
-  }
+}

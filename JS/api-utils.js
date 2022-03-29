@@ -8,6 +8,7 @@ const API = (function(){
             statusDeaths = "&status=deaths",
             statusRecovered = "&status=recovered",
             allCountriesName = [],
+            countriesCardList = [],
             firstCountryArray = [],
             secondCountryArray = [],
             bothCountriesArray = [],
@@ -126,7 +127,11 @@ const API = (function(){
             },
 
             getAllSearchResponse = async function(){
-                try {
+                try {   
+                        if (DOM.resultContainer.childElementCount < 2) {
+
+                        DOM.showLoadingText();
+
                         const   searchCasesResponse = await getSearchCasesResponse(),
                                 countryName = searchCasesResponse.countryName,
                                 updatedDate = searchCasesResponse.updatedDate,
@@ -146,6 +151,12 @@ const API = (function(){
                                 deathsPercent = STRING.calculatePercentage(totalDeathsToday,totalConfirmToday),
                                 dailyRatio = todayConfirm/todayRecovered,
                                 dataArray = [];
+
+                        // push country name
+                        countriesCardList.push(countryName)
+
+                        // set Local storage
+                        localStorage.setItem(countryName,countryName);
 
                         // create country card
                         dataArray.push(countryName,countryPopulation,peopleVaccinated,totalConfirmToday,todayConfirm,totalDeathsToday,todayDeaths,totalRecoveredToday,todayRecovered,updatedDate);
@@ -169,7 +180,10 @@ const API = (function(){
                         }
                         
                         DOM.searchBox.value = "";
-
+                        DOM.hideLoadingText();
+                    } else {
+                        alert ("show only 2 countries");
+                    }
                 } catch(error) {
                     console.log(error);
                 }
