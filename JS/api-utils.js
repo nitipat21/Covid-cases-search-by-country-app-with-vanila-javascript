@@ -8,7 +8,6 @@ const API = (function(){
             statusDeaths = "&status=deaths",
             statusRecovered = "&status=recovered",
             allCountriesName = [],
-            countriesCardList = [],
             firstCountryArray = [],
             secondCountryArray = [],
             bothCountriesArray = [],
@@ -152,16 +151,13 @@ const API = (function(){
                                 dailyRatio = todayConfirm/todayRecovered,
                                 dataArray = [];
 
-                        // push country name
-                        countriesCardList.push(countryName)
-
-                        // set Local storage
-                        localStorage.setItem(countryName,countryName);
-
                         // create country card
                         dataArray.push(countryName,countryPopulation,peopleVaccinated,totalConfirmToday,todayConfirm,totalDeathsToday,todayDeaths,totalRecoveredToday,todayRecovered,updatedDate);
 
                         DOM.createCountryCard((STRING.formatArraytoNumberWithCommas(dataArray)));
+
+                        // set Local storage
+                        localStorage.setItem(countryName,JSON.stringify(dataArray));
 
                         // create compare card
                         if (DOM.resultContainer.childElementCount == 1) {
