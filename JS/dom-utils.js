@@ -58,8 +58,22 @@ const DOM = (function(){
             removeCountryCard = function(event){
                 const   thisResult = event.parentElement.parentElement,
                         thisCountryName = event.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.textContent;
-                        
+
+                if (resultContainer.childElementCount > 1) {
+
+                        if (Array.from(JSON.parse(localStorage.getItem("firstCountry"))).includes(thisCountryName)) {
+                            console.log("this first country")
+                        } else if (Array.from(JSON.parse(localStorage.getItem("secondCountry"))).includes(thisCountryName)) {
+                            console.log("this second country")
+                        }
+
+                }
+
                         localStorage.removeItem(thisCountryName);
+                        localStorage.removeItem("bothCountries");
+                        localStorage.removeItem("compareList");
+                        localStorage.removeItem("firstCountry");
+                        localStorage.removeItem("secondCountry");
                         resultContainer.removeChild(thisResult);
             },
 

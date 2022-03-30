@@ -8,10 +8,6 @@ const API = (function(){
             statusDeaths = "&status=deaths",
             statusRecovered = "&status=recovered",
             allCountriesName = [],
-            firstCountryArray = [],
-            secondCountryArray = [],
-            bothCountriesArray = [],
-            compareResultArray = [],
             
             getAllCountriesName = async function(){
                 try {
@@ -162,26 +158,41 @@ const API = (function(){
                         // create compare card
                         if (DOM.resultContainer.childElementCount == 1) {
 
-                            firstCountryArray.push(countryName,vaccinatedPercent,deathsPercent,dailyRatio);
+                            localStorage.setItem("firstCountry",JSON.stringify([countryName,vaccinatedPercent,deathsPercent,dailyRatio]));
 
                         } else if (DOM.resultContainer.childElementCount > 1) {
 
-                            secondCountryArray.push(countryName,vaccinatedPercent,deathsPercent,dailyRatio);
-                            bothCountriesArray.push(...firstCountryArray,...secondCountryArray);
-                            compareResultArray.push(...STRING.compareBetweenArrays(firstCountryArray,secondCountryArray));
+                            localStorage.setItem("secondCountry",JSON.stringify([countryName,vaccinatedPercent,deathsPercent,dailyRatio]));
 
-                            DOM.generateCompareText(bothCountriesArray,compareResultArray);
-                            DOM.showTextCompareResult();
+                            const   firstCountry = Array.from(LOCALSTORAGE.getLocalStorage("firstCountry")),
+                                    secondCountry = Array.from(LOCALSTORAGE.getLocalStorage("secondCountry")),
+                                    bothCountries = [...firstCountry,...secondCountry],
+                                    compareResult = STRING.compareBetweenArrays(firstCountry,secondCountry);
                             
+                            localStorage.setItem("bothCountries",JSON.stringify(bothCountries));
+                            localStorage.setItem("compareList",JSON.stringify(compareResult));
+
+                            const   bothCountriesLocalStorage = Array.from(JSON.parse(localStorage.getItem("bothCountries"))),
+                                    compareResultLocalStorage = Array.from(JSON.parse(localStorage.getItem("compareList")));
+
+                            DOM.generateCompareText(bothCountriesLocalStorage,compareResultLocalStorage);
+                            DOM.showTextCompareResult();
+
                         }
                         
                         DOM.searchBox.value = "";
                         DOM.hideLoadingText();
+
                     } else {
+
                         alert ("show only 2 countries");
+
                     }
+
                 } catch(error) {
+
                     console.log(error);
+                    
                 }
             }
 

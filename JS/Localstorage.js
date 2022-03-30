@@ -1,4 +1,4 @@
-const localStorage = (function(){
+const LOCALSTORAGE = (function(){
     'use strict'
 
     const   getLocalStorage = function(key){
