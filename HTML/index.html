@@ -10,14 +10,14 @@
 <body>
     <main>
         <div class="layout-container">
-                <div class="input autocomplete">
+                <form class="input autocomplete" autocomplete="off" onsubmit="event.preventDefault();">
                     <input type="text" name="searchBox" class="searchBox">
                     <button type="submit" class="submitBtn">Search</button>
                     <div id="loading"><h3>Loading...</h3></div>
-                </div>
+                </form>
             <div class="result-container"></div>
             <div class="compare-container">
-                <div class="compare-header"><h1>compare text</h1></div>
+                <div class="compare-header"><h1>COMPARE TABLE</h1></div>
                 <div class="compare-info"></div>
             </div>
         </div>

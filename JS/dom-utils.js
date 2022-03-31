@@ -31,7 +31,7 @@ const DOM = (function(){
                                                 <div class="result-text" id="today-cases">
                                                     <h3>Today Cases:</h3><p>${array[4]}</p>
                                                 </div>
-                                                <div class="result-text" id="total deaths">
+                                                <div class="result-text" id="total-deaths">
                                                     <h3>Total Deaths:</h3><p>${array[5]}</p>
                                                 </div>
                                                 <div class="result-text" id="today-deaths">
@@ -61,21 +61,23 @@ const DOM = (function(){
             removeCountryCard = function(event){
                 const   thisResult = event.parentElement.parentElement,
                         thisCountryName = event.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.textContent,
-                        firstCountry = Array.from(JSON.parse(localStorage.getItem("firstCountry"))),
-                        secondCountry = Array.from(JSON.parse(localStorage.getItem("secondCountry")));
+                        firstCountry = Array.from(JSON.parse(localStorage.getItem("firstCountry")));
+                        
 
                 if (resultContainer.childElementCount > 1) {
+
+                    const secondCountry = Array.from(JSON.parse(localStorage.getItem("secondCountry")));
 
                         if (firstCountry.includes(thisCountryName)) {
                             console.log("this first country")
                             localStorage.removeItem("firstCountry");
                             localStorage.removeItem("secondCountry");
-                            localStorage.setItem("firstCountry",JSON.stringify(firstCountry));
+                            localStorage.setItem("firstCountry",JSON.stringify(secondCountry));
                         } else if (secondCountry.includes(thisCountryName)) {
                             console.log("this second country")
                             localStorage.removeItem("firstCountry");
                             localStorage.removeItem("secondCountry");
-                            localStorage.setItem("firstCountry",JSON.stringify(secondCountry));
+                            localStorage.setItem("firstCountry",JSON.stringify(firstCountry));
                         }
 
                 } else {
@@ -90,6 +92,14 @@ const DOM = (function(){
                         localStorage.removeItem("compareList");
                         
                         resultContainer.removeChild(thisResult);
+
+                        if (resultContainer.childElementCount < 1) {
+                            compareInfo.removeChild(compareInfo.firstChild);
+                            DOM.showTextNoCompareResult();
+
+                        } else {
+                            DOM.showTextNoCompareResult();
+                        }
             },
 
             generateCompareText = function(countriesArray,compareResultArray){
@@ -194,11 +204,22 @@ const DOM = (function(){
 
             showLoadingText = function(){
                 loadingText.classList.add("display");
+                
             },
 
             hideLoadingText = function(){
                 loadingText.classList.remove("display");
-            }
+            },
+
+            showSearchBar = function(){
+                searchBox.classList.remove("hidden");
+                submitBtn.classList.remove("hidden");
+            },
+
+            hideSearchBar = function(){
+                searchBox.classList.add("hidden");
+                submitBtn.classList.add("hidden");
+            };
 
     return  {
                 searchBox:searchBox,
@@ -210,7 +231,9 @@ const DOM = (function(){
                 showTextCompareResult:showTextCompareResult,
                 showTextNoCompareResult:showTextNoCompareResult,
                 showLoadingText:showLoadingText,
-                hideLoadingText:hideLoadingText
+                hideLoadingText:hideLoadingText,
+                showSearchBar:showSearchBar,
+                hideSearchBar,hideSearchBar
             }
 })();
 

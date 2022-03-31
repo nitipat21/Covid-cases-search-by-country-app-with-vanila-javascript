@@ -12,6 +12,7 @@ const API = (function(){
             getAllCountriesName = async function(){
                 try {
                                 DOM.showLoadingText();
+                                DOM.hideSearchBar();
 
                         const   allCountriesNameResponse = await fetch(vaccinesUrl),
                                 allCountriesNameData = await allCountriesNameResponse.json(),
@@ -19,6 +20,7 @@ const API = (function(){
                                 allCountriesName.push(...allCountriesNameCloneArray);
 
                                 DOM.hideLoadingText();
+                                DOM.showSearchBar();
 
                 } catch(error) {
                     console.log(error);
@@ -130,6 +132,7 @@ const API = (function(){
                         if (DOM.resultContainer.childElementCount < 2) {
 
                         DOM.showLoadingText();
+                        DOM.hideSearchBar();
 
                         const   searchCasesResponse = await getSearchCasesResponse(),
                                 countryName = searchCasesResponse.countryName,
@@ -186,6 +189,7 @@ const API = (function(){
                         
                         DOM.searchBox.value = "";
                         DOM.hideLoadingText();
+                        DOM.showSearchBar();
 
                     } else {
 

@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    letter-spacing: 0.5px;
 }
 
 body{
@@ -24,7 +25,19 @@ footer{
 }
 
 :root{
-    --red-color: rgb(255, 59, 48);
+    --red-color: rgb(255, 105, 97);
+    --orange-color:rgb(255,179,64);
+    --yellow-color: rgb(255,212,38);
+    --green-color: rgb(48,219,91);
+    --mint-color: rgb(102,212,207);
+    --skyblue-color: rgb(93,230,255);
+    --cyan-color:rgb(112,215,255);
+    --blue-color:rgb(64,156,255);
+    --violet-color:rgb(125,122,255);
+    --purple-color:rgb(218,143,255);
+    --pink-color:rgb(255,100,130);
+    --darkgray-color:rgb(36,36,38);
+    --lightgray-color:rgb(84,84,86);
 }
 
 /*  */
@@ -105,12 +118,21 @@ footer{
     padding: 0.5rem;
 }
 
+.searchBox.hidden{
+    visibility: hidden;
+}
+
+.submitBtn.hidden{
+    visibility: hidden;
+}
+
 #loading{
     position: absolute;
     visibility: hidden;
     padding: 0.25rem;
     left: 50%;
-    transform: translate(-50%,0);
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
 
 #loading h3{
@@ -141,6 +163,44 @@ footer{
     margin: 0.5rem;
 }
 
+#population{
+    background-color: var(--cyan-color);
+}
+
+#vaccinated{
+    background-color: var(--blue-color);
+}
+
+#total-cases{
+    background-color: var(--red-color);
+}
+
+#today-cases{
+    background-color: var(--orange-color);
+}
+
+#total-deaths{
+    background-color: var(--darkgray-color);
+    color: #fff;
+}
+
+#today-deaths{
+    background-color: var(--lightgray-color);
+    color: #fff;
+}
+
+#total-recovered{
+    background-color: var(--green-color);
+}
+
+#today-recovered{
+    background-color: var(--mint-color);
+}
+
+#updated-date{
+    background-color: var(--pink-color);
+}
+
 .btn-container{
     position: relative;
     left: 95%;
@@ -148,9 +208,9 @@ footer{
 }
 
 .removeBtn{
+    position: absolute;
     font-size: 0.5rem;
     background-color: #ffffff00;
-    position: absolute;
     border-style: none;
 }
 
@@ -174,7 +234,7 @@ footer{
     font-size: 0.65rem;
     display: flex;
     flex-direction: column;
-    margin-top: 2.5%;
+    padding-top: 2.5%;
 }
 
 .result-text p{
