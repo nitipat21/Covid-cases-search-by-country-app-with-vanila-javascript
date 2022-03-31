@@ -207,6 +207,11 @@ footer{
     border-radius: 1rem;
 }
 
+.noCompare-text{
+    text-align: center;
+    color: #ff0000;
+}
+
 .compare-table{
     width: 100%;
     height: 100%;

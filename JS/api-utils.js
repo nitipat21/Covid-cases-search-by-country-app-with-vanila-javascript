@@ -11,10 +11,14 @@ const API = (function(){
             
             getAllCountriesName = async function(){
                 try {
+                                DOM.showLoadingText();
+
                         const   allCountriesNameResponse = await fetch(vaccinesUrl),
                                 allCountriesNameData = await allCountriesNameResponse.json(),
                                 allCountriesNameCloneArray = Object.keys(allCountriesNameData);
                                 allCountriesName.push(...allCountriesNameCloneArray);
+
+                                DOM.hideLoadingText();
 
                 } catch(error) {
                     console.log(error);

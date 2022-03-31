@@ -50,6 +50,9 @@ const DOM = (function(){
                                         </div>`;
                                     
                     resultContainer.innerHTML += countryCard;
+
+                    DOM.showTextNoCompareResult();
+                    
                 } else {
                     alert ("show only 2 countries");
                 }
@@ -57,23 +60,35 @@ const DOM = (function(){
 
             removeCountryCard = function(event){
                 const   thisResult = event.parentElement.parentElement,
-                        thisCountryName = event.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.textContent;
+                        thisCountryName = event.parentElement.parentElement.firstElementChild.nextElementSibling.firstElementChild.textContent,
+                        firstCountry = Array.from(JSON.parse(localStorage.getItem("firstCountry"))),
+                        secondCountry = Array.from(JSON.parse(localStorage.getItem("secondCountry")));
 
                 if (resultContainer.childElementCount > 1) {
 
-                        if (Array.from(JSON.parse(localStorage.getItem("firstCountry"))).includes(thisCountryName)) {
+                        if (firstCountry.includes(thisCountryName)) {
                             console.log("this first country")
-                        } else if (Array.from(JSON.parse(localStorage.getItem("secondCountry"))).includes(thisCountryName)) {
+                            localStorage.removeItem("firstCountry");
+                            localStorage.removeItem("secondCountry");
+                            localStorage.setItem("firstCountry",JSON.stringify(firstCountry));
+                        } else if (secondCountry.includes(thisCountryName)) {
                             console.log("this second country")
+                            localStorage.removeItem("firstCountry");
+                            localStorage.removeItem("secondCountry");
+                            localStorage.setItem("firstCountry",JSON.stringify(secondCountry));
                         }
+
+                } else {
+
+                    localStorage.removeItem("firstCountry");
+                    localStorage.removeItem("secondCountry");
 
                 }
 
                         localStorage.removeItem(thisCountryName);
                         localStorage.removeItem("bothCountries");
                         localStorage.removeItem("compareList");
-                        localStorage.removeItem("firstCountry");
-                        localStorage.removeItem("secondCountry");
+                        
                         resultContainer.removeChild(thisResult);
             },
 
@@ -163,6 +178,19 @@ const DOM = (function(){
                     secondCountryDailyRatio.textContent = "-"
                 }
             },
+            
+            showTextNoCompareResult = function(){
+                if (resultContainer.childElementCount == 0) {
+                    const text = `<p class="noCompare-text">Add country name to search Covid data</p>`
+                    compareInfo.innerHTML += text;
+                } else if (resultContainer.childElementCount < 2) {
+                    const text = `<p class="noCompare-text">Add more country to compare data</p>`
+                    compareInfo.removeChild(compareInfo.firstChild);
+                    compareInfo.innerHTML += text;
+                } else if (resultContainer.childElementCount == 2) {
+                    compareInfo.removeChild(compareInfo.firstChild);
+                }
+            },
 
             showLoadingText = function(){
                 loadingText.classList.add("display");
@@ -180,6 +208,7 @@ const DOM = (function(){
                 removeCountryCard:removeCountryCard,
                 generateCompareText:generateCompareText,
                 showTextCompareResult:showTextCompareResult,
+                showTextNoCompareResult:showTextNoCompareResult,
                 showLoadingText:showLoadingText,
                 hideLoadingText:hideLoadingText
             }
