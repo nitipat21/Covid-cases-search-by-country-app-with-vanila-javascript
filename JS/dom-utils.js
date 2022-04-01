@@ -69,12 +69,10 @@ const DOM = (function(){
                     const secondCountry = Array.from(JSON.parse(localStorage.getItem("secondCountry")));
 
                         if (firstCountry.includes(thisCountryName)) {
-                            console.log("this first country")
                             localStorage.removeItem("firstCountry");
                             localStorage.removeItem("secondCountry");
                             localStorage.setItem("firstCountry",JSON.stringify(secondCountry));
                         } else if (secondCountry.includes(thisCountryName)) {
-                            console.log("this second country")
                             localStorage.removeItem("firstCountry");
                             localStorage.removeItem("secondCountry");
                             localStorage.setItem("firstCountry",JSON.stringify(firstCountry));
@@ -192,12 +190,15 @@ const DOM = (function(){
             showTextNoCompareResult = function(){
                 if (resultContainer.childElementCount == 0) {
                     const text = `<p class="noCompare-text">Add country name to search Covid data</p>`
+                    compareInfo.classList.add("no-background")
                     compareInfo.innerHTML += text;
                 } else if (resultContainer.childElementCount < 2) {
                     const text = `<p class="noCompare-text">Add more country to compare data</p>`
+                    compareInfo.classList.add("no-background")
                     compareInfo.removeChild(compareInfo.firstChild);
                     compareInfo.innerHTML += text;
                 } else if (resultContainer.childElementCount == 2) {
+                    compareInfo.classList.remove("no-background")
                     compareInfo.removeChild(compareInfo.firstChild);
                 }
             },

@@ -37,7 +37,7 @@ footer{
     --purple-color:rgb(218,143,255);
     --pink-color:rgb(255,100,130);
     --darkgray-color:rgb(36,36,38);
-    --lightgray-color:rgb(84,84,86);
+    --lightgray-color:rgba(84,84,86);
 }
 
 /*  */
@@ -153,7 +153,7 @@ footer{
 }
 
 .result{
-    background-color: white;
+    background-color: rgba(0, 0, 0, 1);
     border-radius: 1rem;
     max-width: 10rem;
     max-height: 24rem;
@@ -164,46 +164,53 @@ footer{
 }
 
 #population{
-    background-color: var(--cyan-color);
+    color: var(--cyan-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #vaccinated{
-    background-color: var(--blue-color);
+    color: var(--blue-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #total-cases{
-    background-color: var(--red-color);
+    color: var(--red-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #today-cases{
-    background-color: var(--orange-color);
+    color: var(--orange-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #total-deaths{
-    background-color: var(--darkgray-color);
-    color: #fff;
+    color: var(--violet-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #today-deaths{
-    background-color: var(--lightgray-color);
-    color: #fff;
+    color: var(--purple-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #total-recovered{
-    background-color: var(--green-color);
+    color: var(--green-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #today-recovered{
-    background-color: var(--mint-color);
+    color: var(--mint-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 #updated-date{
-    background-color: var(--pink-color);
+    color: var(--pink-color);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .btn-container{
     position: relative;
-    left: 95%;
+    right: 0;
     top: -0.5%;
 }
 
@@ -211,6 +218,7 @@ footer{
     position: absolute;
     font-size: 0.5rem;
     background-color: #ffffff00;
+    color: white;
     border-style: none;
 }
 
@@ -223,7 +231,8 @@ footer{
     text-align: center;
     padding-top: 0.25rem;
     padding-bottom: 0.5rem;
-    border-bottom: solid #000;
+    border-bottom: solid rgba(255, 255, 255, 0.5);
+    color: #fff;
 }
 
 .result-text-container{
@@ -238,7 +247,7 @@ footer{
 }
 
 .result-text p{
-    border-bottom: solid #000;
+    border-bottom: solid rgba(255, 255, 255, 0.5);
     margin-left: 0.1rem;
     margin-top: 0.1rem;
     padding-bottom: 0.1rem;
@@ -267,9 +276,17 @@ footer{
     border-radius: 1rem;
 }
 
+.no-background{
+    background-color: #ffffff10;
+}
+
 .noCompare-text{
     text-align: center;
     color: #ff0000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 .compare-table{
@@ -277,6 +294,86 @@ footer{
     height: 100%;
     font-size: 0.525rem;
     margin: 0 auto;
+}
+
+/* first row */
+table tr:first-child th:first-child{
+    background-color: #fff;
+}
+
+table tr:first-child th:nth-child(2) {
+    background-color: var(--green-color);
+}
+
+table tr:first-child th:nth-child(3) {
+    background-color: var(--violet-color);
+}
+
+table tr:first-child th:nth-child(4) {
+    background-color: var(--yellow-color);
+}
+
+/* second row */
+table tr:nth-child(2) th:first-child{
+    background-color: #000;
+    color: #fff;
+}
+
+table tr:nth-child(2) th:nth-child(2){
+    background-color: #000;
+    color: var(--green-color);
+}
+
+table tr:nth-child(2) th:nth-child(3){
+    background-color: #000;
+    color: var(--purple-color);
+}
+
+table tr:nth-child(2) th:nth-child(4){
+    background-color: #000;
+    color: var(--yellow-color);
+}
+
+/* third row */
+table tr:nth-child(3) th:first-child{
+    background-color: #000;
+    color: #fff;
+}
+
+table tr:nth-child(3) th:nth-child(2){
+    background-color: #000;
+    color: var(--green-color);
+}
+
+table tr:nth-child(3) th:nth-child(3){
+    background-color: #000;
+    color: var(--purple-color);
+}
+
+table tr:nth-child(3) th:nth-child(4){
+    background-color: #000;
+    color: var(--yellow-color);
+}
+
+/* fourth row */
+table tr:nth-child(4) th:first-child{
+    background-color: #000;
+    color: #fff;
+}
+
+table tr:nth-child(4) th:nth-child(2){
+    background-color: #000;
+    color: var(--green-color);
+}
+
+table tr:nth-child(4) th:nth-child(3){
+    background-color: #000;
+    color: var(--purple-color);
+}
+
+table tr:nth-child(4) th:nth-child(4){
+    background-color: #000;
+    color: var(--yellow-color);
 }
 
 @media screen and (min-width: 1300px) {

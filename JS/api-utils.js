@@ -153,6 +153,13 @@ const API = (function(){
                                 deathsPercent = STRING.calculatePercentage(totalDeathsToday,totalConfirmToday),
                                 dailyRatio = todayConfirm/todayRecovered,
                                 dataArray = [];
+                        
+                        // check same country
+                        if(localStorage.getItem(countryName)){
+
+                            alert("can not compare the same country")
+
+                        } else {
 
                         // create country card
                         dataArray.push(countryName,countryPopulation,peopleVaccinated,totalConfirmToday,todayConfirm,totalDeathsToday,todayDeaths,totalRecoveredToday,todayRecovered,updatedDate);
@@ -161,6 +168,8 @@ const API = (function(){
 
                         // set Local storage
                         localStorage.setItem(countryName,JSON.stringify(dataArray));
+
+                        }
 
                         // create compare card
                         if (DOM.resultContainer.childElementCount == 1) {
